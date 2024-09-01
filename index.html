@@ -12,7 +12,7 @@
             background-color: #f4f4f9;
         }
         .container {
-            max-width: 500px;
+            max-width: 600px;
             margin: auto;
             padding: 20px;
             background-color: #fff;
@@ -54,6 +54,26 @@
             border-radius: 4px;
             background-color: #f9f9f9;
         }
+        #mapa {
+            display: grid;
+            gap: 1px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            background-color: #000;
+        }
+        .celda {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+        .auto {
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -64,20 +84,51 @@
     <input type="text" id="comandos" placeholder="Ej: 5,5/1,2N/IAIAIAIAA">
     <button onclick="ejecutarSimulacion()">Ejecutar</button>
     <div id="resultado" class="result"></div>
+    <div id="mapa"></div>
 </div>
 
 <script src="src/simulador.js"></script>
 <script>
+    function crearMapa(ancho, alto, posX, posY, orientacion) {
+        const mapa = document.getElementById('mapa');
+        mapa.style.gridTemplateColumns = `repeat(${ancho + 1}, 40px)`; // Corregido aquí
+        mapa.innerHTML = ''; // Limpiar el mapa anterior
+
+        for (let y = alto; y >= 0; y--) {
+            for (let x = 0; x <= ancho; x++) {
+                const celda = document.createElement('div');
+                celda.classList.add('celda');
+                // Colocar el auto en la posición final
+                if (x === posX && y === posY) {
+                    const auto = document.createElement('span');
+                    auto.classList.add('auto');
+                    auto.textContent = orientacion; // Mostrar la orientación
+                    celda.appendChild(auto);
+                }
+                mapa.appendChild(celda);
+            }
+        }
+    }
+
     function ejecutarSimulacion() {
         // Obtener el input del usuario
         const inputComandos = document.getElementById('comandos').value;
         try {
             // Ejecutar la simulación usando la función de simulador.js
             const resultado = simularMovimiento(inputComandos);
-            // Mostrar el resultado en el div
-            document.getElementById('resultado').innerText = `Posición Final: ${resultado}`;
+            document.getElementById('resultado').innerText = `Posición Final: ${resultado}`; // Corregido aquí
+
+            // Desglosar la entrada para generar el mapa
+            const [superficie, ,] = inputComandos.split('/');
+            const [maxX, maxY] = superficie.split(',').map(Number);
+
+            // Desglosar la salida para colocar el auto en el mapa
+            const [posicion, orientacion] = resultado.split(' ');
+            const [posX, posY] = posicion.split(',').map(Number);
+
+            // Crear el mapa con la posición del auto
+            crearMapa(maxX, maxY, posX, posY, orientacion);
         } catch (error) {
-            // Mostrar error si la entrada es incorrecta
             document.getElementById('resultado').innerText = 'Error: Entrada inválida. Por favor revise el formato.';
         }
     }
