@@ -1,4 +1,3 @@
-
 class Auto {
   constructor(x, y, orientacion, max_x, max_y) {
     this.x = x;
@@ -46,7 +45,7 @@ class Auto {
   }
 
   obtenerPosicionFinal() {
-    return `${this.x},${this.y} ${this.orientacion}`;
+    return ${this.x},${this.y} ${this.orientacion};
   }
 }
 

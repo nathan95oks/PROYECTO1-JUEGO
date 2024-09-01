@@ -1,4 +1,3 @@
-
 const simularMovimiento = require('./simulador');
 
 describe('Simulador de Autitos', () => {
@@ -15,6 +14,6 @@ describe('Simulador de Autitos', () => {
   });
 
   test('Debe ejecutar correctamente los comandos de giro', () => {
-    expect(simularMovimiento('5,5/2,2N/IDID')).toBe('2,2 N');
-  });
+    expect(simularMovimiento('5,5/2,2N/IDID')).toBe('2,2 N');
+  });
 });
