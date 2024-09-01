@@ -1,4 +1,4 @@
-class Auto {
+export class Auto {
   constructor(x, y, orientacion, max_x, max_y) {
       this.x = x;
       this.y = y;
@@ -9,10 +9,14 @@ class Auto {
 
   avanzar() {
       if (this.orientacion === 'N' && this.y < this.max_y) this.y++;
-      if (this.orientacion === 'E' && this.x < this.max_x) this.x++;
-      if (this.orientacion === 'S' && this.y > 0) this.y--;
-      if (this.orientacion === 'O' && this.x > 0) this.x--;
+      // Agrega lógica para otras orientaciones si es necesario
+  }
+
+  girar(direccion) {
+      const orientaciones = ['N', 'E', 'S', 'O']; // Norte, Este, Sur, Oeste
+      let index = orientaciones.indexOf(this.orientacion);
+      if (direccion === 'I') index = (index - 1 + 4) % 4;
+      if (direccion === 'D') index = (index + 1) % 4;
+      this.orientacion = orientaciones[index];
   }
 }
-
-module.exports = { Auto };
