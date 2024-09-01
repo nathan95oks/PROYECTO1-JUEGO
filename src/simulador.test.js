@@ -1,24 +1,20 @@
-const { Auto } = require('./simulador');
 
-describe('Auto - Versión 1', () => {
-    test('Debe inicializar el auto en la posición y orientación dadas', () => {
-        const auto = new Auto(0, 0, 'N', 5, 5);
-        expect(auto.x).toBe(0);
-        expect(auto.y).toBe(0);
-        expect(auto.orientacion).toBe('N');
-    });
+const simularMovimiento = require('./simulador');
 
-    test('Debe avanzar hacia el norte correctamente', () => {
-        const auto = new Auto(0, 0, 'N', 5, 5);
-        auto.avanzar();
-        expect(auto.x).toBe(0);
-        expect(auto.y).toBe(1);
-    });
+describe('Simulador de Autitos', () => {
+  test('Debe devolver la posición final correcta para el ejemplo 1', () => {
+    expect(simularMovimiento('5,5/1,2N/IAIAIAIAA')).toBe('1,3 N');
+  });
 
-    test('Debe avanzar hacia el este correctamente', () => {
-        const auto = new Auto(0, 0, 'E', 5, 5);
-        auto.avanzar();
-        expect(auto.x).toBe(1);
-        expect(auto.y).toBe(0);
-    });
+  test('Debe devolver la posición final correcta para el ejemplo 2', () => {
+    expect(simularMovimiento('5,5/3,3E/AADAADADDA')).toBe('5,1 E');
+  });
+
+  test('Debe manejar el borde de la superficie correctamente', () => {
+    expect(simularMovimiento('5,5/0,0S/AA')).toBe('0,0 S');
+  });
+
+  test('Debe ejecutar correctamente los comandos de giro', () => {
+    expect(simularMovimiento('5,5/2,2N/IDID')).toBe('2,2 N');
+  });
 });
