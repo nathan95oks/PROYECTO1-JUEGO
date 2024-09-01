@@ -9,7 +9,10 @@ class Auto {
 
   avanzar() {
       if (this.orientacion === 'N' && this.y < this.max_y) this.y++;
+      if (this.orientacion === 'E' && this.x < this.max_x) this.x++;
+      if (this.orientacion === 'S' && this.y > 0) this.y--;
+      if (this.orientacion === 'O' && this.x > 0) this.x--;
   }
 }
 
-module.exports={Auto};
+module.exports = { Auto };

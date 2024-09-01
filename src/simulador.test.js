@@ -14,4 +14,11 @@ describe('Auto - Versión 1', () => {
         expect(auto.x).toBe(0);
         expect(auto.y).toBe(1);
     });
+
+    test('Debe avanzar hacia el este correctamente', () => {
+        const auto = new Auto(0, 0, 'E', 5, 5);
+        auto.avanzar();
+        expect(auto.x).toBe(1);
+        expect(auto.y).toBe(0);
+    });
 });

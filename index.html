@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <!-- Estructura base del HTML -->
-</head>
-<body>
-    <div class="container">
-        <!-- Mantener estructura de la interfaz -->
-    </div>
-    <script src="src/simulador.js"></script>
-</body>
-</html>
+<script src="src/presenter.js"></script>
+<script>
+    function ejecutarSimulacion() {
+        const inputComandos = document.getElementById('comandos').value;
+        const resultado = procesarEntrada(inputComandos);
+        document.getElementById('resultado').innerText = `Posición Final: ${resultado}`;
+    }
+</script>
