@@ -45,7 +45,7 @@ class Auto {
   }
 
   obtenerPosicionFinal() {
-    return ${this.x},${this.y} ${this.orientacion};
+    return `${this.x},${this.y} ${this.orientacion}`;
   }
 }
 
