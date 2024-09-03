@@ -18,7 +18,7 @@ class Auto {
     const index = orientaciones.indexOf(this.orientacion);
     this.orientacion = orientaciones[(index + 1) % 4];
   }
-
+  
   avanzar() {
     switch (this.orientacion) {
       case 'N':

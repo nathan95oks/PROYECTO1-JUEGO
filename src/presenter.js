@@ -1,7 +1,7 @@
 
 const simularMovimiento = require('./simulador');
 
-// Ejemplo de entrada del usuario
+
 const cadenaComandos1 = '5,5/1,2N/IAIAIAIAA';
 const resultado1 = simularMovimiento(cadenaComandos1);
 console.log(`Entrada: ${cadenaComandos1}`);
